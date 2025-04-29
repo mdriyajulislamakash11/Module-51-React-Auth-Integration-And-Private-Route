@@ -1,22 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthProviders";
+import auth from "../../fairebase.init";
 
 const Login = () => {
-
+  const { loginUser } = useContext(AuthContext);
 
   const handleLoginSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(email, password)
-  }
+    console.log(email, password);
 
+    // Login User
+    loginUser(email, password)
+    .then((result) => {
+      console.log(result.user);
+    })
+    .cetch((error) => {
+      console.log(error);
+    });
+  
+  };
 
   return (
     <div className="flex justify-center items-center my-32">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-      <h2 className='text-center text-4xl font-bold text-accent'>Login</h2>
+        <h2 className="text-center text-4xl font-bold text-accent">Login</h2>
         <form className="card-body" onSubmit={handleLoginSubmit}>
           <div className="form-control">
             <label className="label">
@@ -51,7 +62,12 @@ const Login = () => {
             <button className="btn btn-accent">Login</button>
           </div>
         </form>
-        <p>please register now <Link to="/register" className="text-blue-600">Register</Link></p>
+        <p>
+          please register now{" "}
+          <Link to="/register" className="text-blue-600">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );
