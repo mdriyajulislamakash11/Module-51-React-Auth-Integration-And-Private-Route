@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 const Register = () => {
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
+
+    const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(email, password);
+    console.log(name, email, password);
   };
 
   return (
@@ -16,6 +18,16 @@ const Register = () => {
         <h2 className="text-center text-4xl font-bold text-accent">Regicter</h2>
         <form onSubmit={handleRegisterSubmit} className="card-body">
           <div className="form-control">
+            <label className="label">
+              <span className="label-text">Name</span>
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="name"
+              className="input input-bordered"
+              required
+            />
             <label className="label">
               <span className="label-text">Email</span>
             </label>
@@ -38,11 +50,6 @@ const Register = () => {
               className="input input-bordered"
               required
             />
-            <label className="label">
-              <a href="#" className="label-text-alt link link-hover">
-                Forgot password?
-              </a>
-            </label>
           </div>
           <div className="form-control mt-6">
             <button className="btn btn-accent">Register</button>
