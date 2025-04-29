@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import auth from '../fairebase.init';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 
 export const AuthContext = createContext(null)
 
@@ -14,11 +14,19 @@ const AuthProviders = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    onAuthStateChanged(auth, currentUser => {
+        if(currentUser) {
+            console.log("currently login user", currentUser)
+        }else{
+            console.log("no user login")
+        }
+    } )
+
     const authInfo = {
         name: "akash",
         createUser,
         loginUser,
-        
+
     }
 
 
