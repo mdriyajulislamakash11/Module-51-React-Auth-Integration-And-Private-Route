@@ -1,12 +1,18 @@
 import React, { createContext } from 'react';
+import auth from '../fairebase.init';
 
-const AuthContext = createContext(null)
+export const AuthContext = createContext(null)
 
 const AuthProviders = ({children}) => {
 
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
 
     const authInfo = {
-        name: "akash"
+        name: "akash",
+        createUser,
     }
 
 
