@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import auth from '../fairebase.init';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const AuthContext = createContext(null)
 
