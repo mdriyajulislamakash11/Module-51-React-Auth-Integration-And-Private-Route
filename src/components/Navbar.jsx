@@ -7,13 +7,13 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOutUser()
-    .then(() => {
-      console.log("user logout successfully")
-    })
-    .catch((error) => {
-      console.log(error.message)
-    })
-  }
+      .then(() => {
+        console.log("user logout successfully");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const links = (
     <>
@@ -26,6 +26,14 @@ const Navbar = () => {
       <li>
         <NavLink to="/register">Register</NavLink>
       </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink to="/order">Order</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -64,7 +72,9 @@ const Navbar = () => {
         {user ? (
           <>
             <small>{user?.email}</small>
-            <a onClick={handleLogOut} className="btn">LogOut</a>
+            <a onClick={handleLogOut} className="btn">
+              LogOut
+            </a>
           </>
         ) : (
           <Link to="/login">Login</Link>
