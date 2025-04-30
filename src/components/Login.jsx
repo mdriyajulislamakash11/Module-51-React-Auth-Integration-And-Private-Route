@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProviders";
-import auth from "../../fairebase.init";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -15,13 +15,14 @@ const Login = () => {
 
     // Login User
     loginUser(email, password)
-    .then((result) => {
-      console.log(result.user);
-    })
-    .cetch((error) => {
-      console.log(error);
-    });
-  
+      .then((result) => {
+        console.log(result.user);
+        e.target.reset();
+        navigate("/");
+      })
+      .cetch((error) => {
+        console.log(error);
+      });
   };
 
   return (
