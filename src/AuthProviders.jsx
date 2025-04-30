@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import auth from '../fairebase.init';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 export const AuthContext = createContext(null)
 
@@ -15,7 +15,11 @@ const AuthProviders = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    
+    const logOutUser = () => {
+        return signOut(auth);
+    }
+
+
 
     // Observer
     useEffect(() => {
@@ -36,6 +40,7 @@ const AuthProviders = ({children}) => {
         user,
         createUser,
         loginUser,
+        logOutUser,
 
     }
 
