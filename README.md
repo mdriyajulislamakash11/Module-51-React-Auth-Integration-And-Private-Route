@@ -1,12 +1,32 @@
-# React + Vite
+# My React Login App (Hosted on Netlify)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React Single Page Application (SPA) which includes a `/login` route using React Router.  
+The app is deployed on Netlify and supports routing with proper fallback configuration.
 
-Currently, two official plugins are available:
+🔗 Live Site: [https://venerable-medovik-ed7c68.netlify.app](https://venerable-medovik-ed7c68.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✅ Features
+- Built with React
+- Used React Router for routing
+- Includes a `/login` page
+- Hosted on Netlify
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ⚠️ Problem Faced
+
+When trying to visit `/login` directly from the browser or refreshing that route, I received a **404 Page Not Found** error from Netlify.
+
+---
+
+## ✅ Solution
+
+This happened because Netlify doesn't support client-side routing by default.  
+To fix this, I created a `_redirects` file.
+
+### 🔧 Steps I followed:
+
+1. Inside the `public` folder of my React app, I created a file named `_redirects` (no file extension).
+2. Inside `_redirects`, I added the following line:
